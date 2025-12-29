@@ -9,19 +9,11 @@ require("themery").setup({
         name = "Day",
         colorscheme = "kanagawa-lotus",
     },
-        {
-            name = "Night",
-            colorscheme = "kanagawa-dragon",
-        } },
+    {
+        name = "Night",
+        colorscheme = "kanagawa-dragon",
+    } },
 })
--- require("mason-lspconfig").setup({
---   ensure_installed = { "lua_ls", "ts_ls" },
---   handlers = {
---     lsp.default_setup,
---   },
--- })
-
-
 
 -- Custom Keymaps Commands
 vim.keymap.set("n", "<leader>ps", ":PackerSync<CR>")
@@ -51,15 +43,21 @@ vim.keymap.set('n', '<A-9>', ':BufferGoto 9<CR>')
 
 -- Telescope
 vim.keymap.set("n", "<leader>ff", function()
-  require("telescope.builtin").find_files()
+    require("telescope.builtin").find_files()
 end)
 
 vim.keymap.set("n", "<leader>fg", function()
-  require("telescope.builtin").live_grep()
+    require("telescope.builtin").live_grep()
 end)
- 
- -- Theme
- vim.cmd("colorscheme kanagawa")
+
+-- Theme
+vim.cmd("colorscheme kanagawa")
+
+
+-- Copy & Paste
+vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank to system clipboard" })
+vim.keymap.set("v", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
+
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
