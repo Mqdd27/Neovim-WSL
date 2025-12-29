@@ -4,6 +4,16 @@ require("telescope").setup({})
 require("nvim-tree").setup()
 require("gitsigns").setup()
 require("mason").setup()
+require("themery").setup({
+    themes = { {
+        name = "Day",
+        colorscheme = "kanagawa-lotus",
+    },
+        {
+            name = "Night",
+            colorscheme = "kanagawa-dragon",
+        } },
+})
 -- require("mason-lspconfig").setup({
 --   ensure_installed = { "lua_ls", "ts_ls" },
 --   handlers = {
