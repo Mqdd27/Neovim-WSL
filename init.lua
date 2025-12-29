@@ -32,6 +32,8 @@ vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
 
 -- GIT
 vim.keymap.set("n", "<leader>gs", ":Git<CR>")
+vim.keymap.set("n", "<leader>gm", ":Git commit<CR>")
+vim.keymap.set("n", "<leader>gp", ":Git push<CR>")
 
 -- Barbar
 vim.keymap.set("n", "<A-,>", ":BufferPrevious<CR>")
