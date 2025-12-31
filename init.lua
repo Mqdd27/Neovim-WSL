@@ -4,6 +4,9 @@ require("telescope").setup({
   defaults = {
     file_ignore_patterns = {
       "__pycache__/",
+      "filestore/",
+      "sessions/",
+      "%.tx/",
       "%.zed/",
       "%.vim/",
       "%.vscode/",
