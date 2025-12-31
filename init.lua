@@ -1,6 +1,18 @@
 vim.g.mapleader = " "
 require("plugins")
-require("telescope").setup({})
+require("telescope").setup({
+  defaults = {
+    file_ignore_patterns = {
+      "__pycache__/",
+      "%.zed/",
+      "%.vim/",
+      "%.vscode/",
+      "%.idea/",
+      "%.venv/",
+      "%venv/",
+    },
+  },
+})
 require("nvim-tree").setup()
 require("gitsigns").setup()
 require("mason").setup()
