@@ -1,42 +1,46 @@
 vim.g.mapleader = " "
 require("plugins")
 require("telescope").setup({
-  defaults = {
-    file_ignore_patterns = {
-      "__pycache__/",
-      "filestore/",
-      "sessions/",
-      ".tmp",
-      "temp/",
-      "temp",
-      "%.tx/",
-      "%.zed/",
-      "%.vim/",
-      "%.vscode/",
-      "%.idea/",
-      "%.venv/",
-      "node_modules/",
-      "%.next/",
-      "%dist/",
-      "%.git/",
-      "%.cache/",
-      "%venv/",
-      ".mypy_cache",
-      ".pytest_cache",
-      ".ruff_cache",
-      ".eggs",
-      ".nuxt",
-      ".svelte-kit",
-      ".vite",
-      ".turbo",
-      ".parcel-cache",
-      ".eslintcache",
-      ".docker",
-      ".dockerignore",
-      "terraform/.terraform",
-      "vendor"
+    defaults = {
+        file_ignore_patterns = {
+            "__pycache__",
+            "filestore",
+            "sessions",
+            ".tmp",
+            "temp",
+            "%.tx",
+            "%.zed",
+            "%.vim",
+            "%.vscode",
+            "%.idea",
+            "node_modules",
+            "%.next",
+            "%dist",
+            "%.git",
+            "%.cache",
+            "%venv",
+            "%.venv",
+            ".mypy_cache",
+            ".pytest_cache",
+            ".ruff_cache",
+            ".eggs",
+            ".nuxt",
+            ".svelte-kit",
+            ".vite",
+            ".turbo",
+            ".parcel-cache",
+            ".eslintcache",
+            ".docker",
+            ".dockerignore",
+            "terraform/.terraform",
+            "vendor"
+        },
+        pickers = {
+            find_files = {
+                find_command = { "fd", "--type", "f", "--color", "never", "--no-require-git" }
+            }
+        }
     },
-  },
 })
 require("nvim-tree").setup()
 require("gitsigns").setup()
