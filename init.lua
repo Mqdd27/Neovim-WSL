@@ -50,11 +50,72 @@ require("themery").setup({
         name = "Day",
         colorscheme = "kanagawa-lotus",
     },
-    {
-        name = "Night",
-        colorscheme = "kanagawa-dragon",
-    } },
+        {
+            name = "Night",
+            colorscheme = "kanagawa-dragon",
+        } },
 })
+
+
+-- LSP
+require('mason-lspconfig').setup({
+    handlers = {
+        function(server_name)
+            require('lspconfig')[server_name].setup({})
+        end,
+    },
+})
+
+require('blink.cmp').setup({
+    keymap = {
+        preset = 'default',
+        ['<C-y>'] = { 'accept', 'fallback' },
+        -- ['<CR>'] = { 'accept', 'fallback' },
+    },
+
+    appearance = {
+        nerd_font_variant = 'mono',
+        use_nvim_as_default = true
+    },
+
+    completion = {
+        documentation = { auto_show = true }
+    },
+
+    fuzzy = {
+        implementation = "lua"
+    },
+    opts_extend = { "sources.default" },
+    signature = { enabled = true }
+})
+
+vim.lsp.config('lua_ls', {
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' },
+            },
+        },
+    },
+    filetypes = { 'lua' },
+})
+
+
+-- LSP Keymaps
+local opts = { noremap = true, silent = true, buffer = bufnr }
+
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+
+vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+
+vim.keymap.set('n', '<leader>f', function()
+    vim.lsp.buf.format({ async = true })
+end, opts)
+
 
 -- Custom Keymaps Commands
 vim.keymap.set("n", "<leader>ps", ":PackerSync<CR>")
@@ -97,7 +158,6 @@ vim.cmd("colorscheme kanagawa")
 
 -- Copy & Paste
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank to system clipboard" })
-vim.keymap.set("v", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
 
 
 vim.g.loaded_netrw = 1
