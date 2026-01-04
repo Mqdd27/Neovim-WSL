@@ -105,7 +105,7 @@ vim.lsp.config('lemminx', {
 require('blink.cmp').setup({
     keymap = {
         preset = 'default',
-        ['<A-y>'] = { 'accept', 'fallback' },
+        ['<C-y>'] = { 'accept', 'fallback' },
         -- ['<CR>'] = { 'accept', 'fallback' },
     },
 
