@@ -2,6 +2,23 @@ vim.g.mapleader = " "
 require("plugins")
 require("telescope").setup({
     defaults = {
+        find_command = {
+            "fd",
+            "--type", "f",
+            "--color", "never",
+            "--no-require-git",
+
+            -- exclude folders for python/odoo project
+            "--exclude", "venv",
+            "--exclude", ".venv",
+            "--exclude", "__pycache__",
+            "--exclude", "env",
+            "--exclude", ".env",
+            "--exclude", "filestore",
+            "--exclude", "sessions",
+            "--exclude", "database",
+            "--exclude", ".git",
+        },
         file_ignore_patterns = {
             "__pycache__",
             "filestore",
@@ -66,10 +83,29 @@ require('mason-lspconfig').setup({
     },
 })
 
+vim.lsp.config('lua_ls', {
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' },
+            },
+        },
+    },
+    filetypes = { 'lua' },
+})
+
+vim.lsp.config('prettier', {
+    filetypes = { 'javascript', 'typescript', 'typescriptreact' },
+})
+
+vim.lsp.config('lemminx', {
+    filetypes = { 'xml' }
+})
+
 require('blink.cmp').setup({
     keymap = {
         preset = 'default',
-        ['<C-y>'] = { 'accept', 'fallback' },
+        ['<A-y>'] = { 'accept', 'fallback' },
         -- ['<CR>'] = { 'accept', 'fallback' },
     },
 
@@ -89,16 +125,6 @@ require('blink.cmp').setup({
     signature = { enabled = true }
 })
 
-vim.lsp.config('lua_ls', {
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' },
-            },
-        },
-    },
-    filetypes = { 'lua' },
-})
 
 
 -- LSP Keymaps
