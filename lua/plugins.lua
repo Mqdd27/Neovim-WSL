@@ -18,7 +18,7 @@ return require('packer').startup(function(use)
     use {
         'nvim-tree/nvim-tree.lua',
         requires = {
-            'nvim-tree/nvim-web-devicons', 
+            'nvim-tree/nvim-web-devicons',
         },
     }
 
@@ -33,7 +33,7 @@ return require('packer').startup(function(use)
 
     use 'zaldih/themery.nvim'
 
-    use 'lewis6991/gitsigns.nvim' 
+    use 'lewis6991/gitsigns.nvim'
     use 'romgrk/barbar.nvim'
     use 'tpope/vim-fugitive'
 
@@ -52,4 +52,12 @@ return require('packer').startup(function(use)
     }
     use 'saghen/blink.cmp'
     use 'rafamadriz/friendly-snippets'
+    use 'mfussenegger/nvim-dap'
+    use 'rcarriga/nvim-dap-ui'
+    use 'theHamsta/nvim-dap-virtual-text'
+    use 'jay-babu/mason-nvim-dap.nvim'
+    use 'mfussenegger/nvim-dap-python'
+    use 'nvim-neotest/nvim-nio'
+
+    use 'mg979/vim-visual-multi'
 end)
