@@ -60,4 +60,6 @@ return require('packer').startup(function(use)
     use 'nvim-neotest/nvim-nio'
 
     use 'mg979/vim-visual-multi'
+    use 'zbirenbaum/copilot.lua'
+    use 'sphamba/smear-cursor.nvim'
 end)

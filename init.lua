@@ -102,6 +102,26 @@ vim.lsp.config('lemminx', {
     filetypes = { 'xml' }
 })
 
+require('copilot').setup({
+    suggestion = { enabled = true },
+    panel = { enabled = false },
+})
+
+require('smear_cursor').setup({
+    smear_between_buffers = true,
+
+    smear_between_neighbor_lines = true,
+
+    scroll_buffer_space = true,
+
+    legacy_computing_symbols_support = false,
+
+    smear_insert_mode = true,
+
+    cursor_color = '#d3cdc3',
+})
+
+
 require('blink.cmp').setup({
     keymap = {
         preset = 'default',
@@ -122,7 +142,10 @@ require('blink.cmp').setup({
         implementation = "lua"
     },
     opts_extend = { "sources.default" },
-    signature = { enabled = true }
+    signature = { enabled = true },
+    providers = {
+        copilot = { name = "copilot", module = "copilot.suggestion", async = true }
+    }
 })
 
 local dap = require('dap')
@@ -132,26 +155,26 @@ local dap_python = require('dap-python')
 dapui.setup()
 
 require('dap.ext.vscode').load_launchjs(nil, {
-  python = { 'python' }
+    python = { 'python' }
 })
 
 dap_python.setup("C:/Users/ahmad/OneDrive/Documents/odoo-fixco/.venv/Scripts/python.exe")
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
-  dapui.open()
+    dapui.open()
 end
 
 dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close()
+    dapui.close()
 end
 
 dap.listeners.before.event_exited["dapui_config"] = function()
-  dapui.close()
+    dapui.close()
 end
 
 vim.g.VM_maps = {
-  ['Find Under'] = '<C-n>',
-  ['Find Subword Under'] = '<C-n>',
+    ['Find Under'] = '<C-n>',
+    ['Find Subword Under'] = '<C-n>',
 }
 
 
@@ -162,7 +185,7 @@ vim.keymap.set('n', '<F12>', dap.step_out)
 
 vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint)
 vim.keymap.set('n', '<leader>B', function()
-  dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
+    dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
 end)
 
 vim.keymap.set('n', '<leader>dr', dap.repl.open)
@@ -220,8 +243,12 @@ vim.keymap.set("n", "<leader>fg", function()
     require("telescope.builtin").live_grep()
 end)
 
+vim.keymap.set("n", "<leader>ft", function()
+    require("telescope.builtin").colorscheme({ enable_preview = true })
+end)
+
 -- Theme
-vim.cmd("colorscheme kanagawa")
+-- vim.cmd("colorscheme kanagawa")
 
 
 -- Copy & Paste
@@ -247,3 +274,10 @@ vim.opt.smartindent = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.updatetime = 50
+
+vim.api.nvim_set_keymap(
+    "i",
+    "<C-CR>",
+    'copilot#Accept("<CR>")',
+    { silent = true, expr = true }
+)
